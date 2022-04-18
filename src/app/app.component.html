@@ -1,0 +1,21 @@
+<router-outlet>
+
+</router-outlet>
+  
+  <div class="title">
+    <h1>{{title}}</h1>
+  </div>
+  <app-add-todo (addTodo)="addTodo($event)"></app-add-todo>
+  <div class="container">
+    <h3>Your Todos</h3>
+  </div>
+  <div *ngIf="this.todoArr.length===0; else elseBlock">
+    <div class="container">No todos to display.</div>
+  </div>
+<ng-template #elseBlock>
+  <div *ngFor="let todo of todoArr;index as i">
+        <app-todo-item [i]="i"  [todo]="todo" (deleteTodo)="todoDelete($event)" (markTodo)="todomark($event)" ></app-todo-item> 
+        <!-- // in square brackets the attribute is written and in " " the value need to be send is written   -->
+  </div>
+</ng-template>
+
